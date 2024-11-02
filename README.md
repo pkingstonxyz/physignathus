@@ -1,8 +1,14 @@
 # physignathus
 
+Φυσίγναθος
+
+By: Patrick Kingston
+
 ## Who is Physignathus
 
 Physignathus, rendered sometimes as "The pouter" because of the meaning "puffed-jaw." He is a character in the excellent text the *Batrachomyomachia* or *War of the frogs and mice*, which is an ancient parody of the Iliad.
+
+It is an ***excellent*** text full of whimsy that I recommend all classicists read. :)
 
 ## What
 
@@ -13,3 +19,20 @@ A project designed to assist learners in using the "natural" method of language 
 Secondarily:
 
 A project for me to exercise my python skills prior to my full time job
+
+---
+
+Φυσίγναθος
+
+---
+
+## Technical stuff
+
+This project's tech stack is:
+
+| Function | Library/tool | Justification |
+| --- | --- | --- |
+| Language | Python | It's the language of ansible, the codebase I'll be working in |
+| Web framework | fastapi | It's fast and simple |
+| Authorization | oauth2 | High time I learn how to use this |
+| Database | sqlite | It's fast and simply enough for this application |
