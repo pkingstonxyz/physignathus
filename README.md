@@ -2,7 +2,7 @@
 
 ## Who is Physignathus
 
-Physignathus, rendered sometimes as "The pouter" because of the meaning "puffed-jaw"
+Physignathus, rendered sometimes as "The pouter" because of the meaning "puffed-jaw." He is a character in the excellent text the *Batrachomyomachia* or *War of the frogs and mice*, which is an ancient parody of the Iliad.
 
 ## What
 
@@ -13,7 +13,3 @@ A project designed to assist learners in using the "natural" method of language 
 Secondarily:
 
 A project for me to exercise my python skills prior to my full time job
-
-Tertiarily:
-
-A project for me to, finally, learn AWS
