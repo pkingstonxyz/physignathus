@@ -1,13 +1,8 @@
-from enum import Enum
+import sqlite3
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
-
-class FooBarBaz(str, Enum):
-    foo = "foo"
-    bar = "bar"
-    baz = "baz"
 
 @app.get("/items/0")
 async def get_item_base():
