@@ -50,7 +50,12 @@ A project for me to exercise my python skills prior to my first full time progra
 
 ## Technical stuff
 
-This project's tech stack is:
+### Project structure
+
+ - Root directory: Build and deployment babashka scripts(tasks? idk haven't written them yet)
+ - ^ Also has the readme
+ - pond: The python backend
+ - field: The clojurescript frontend
 
 ### Frontend
 

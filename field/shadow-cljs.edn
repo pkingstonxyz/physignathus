@@ -1,0 +1,19 @@
+;; shadow-cljs configuration
+{:source-paths
+ ["src/dev"
+  "src/main"
+  "src/test"]
+
+ :dependencies
+ [[com.pitch/uix.core "1.1.0"]
+  [com.pitch/uix.dom  "1.1.0"]
+  [com.fbeyer/refx    "0.0.49"]]
+
+ :dev-http {8080 "public"}
+
+ :builds
+ {:frontend {:target :browser
+             :modules {:main {:init-fn main/init}}}
+  :release {:target :browser
+            :modules {:main {:init-fn main/init}}
+            :output-dir "public/releasejs"}}}
