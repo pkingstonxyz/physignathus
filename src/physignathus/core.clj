@@ -2,6 +2,7 @@
   (:require [aleph.http :as aleph]
             ;[muuntaja.core :as muuntaja]
             [reitit.ring :as ring]
+            [integrant.core :as ig]
             [physignathus.mainpage :as mainpage]))
 ;[reitit.coercion.malli]))
 ;[reitit.ring.malli]))
@@ -21,28 +22,40 @@
          :method-not-allowed (constantly {:status 405, :body "405, not allowed"})
          :not-acceptable (constantly {:status 406, :body "406, not acceptable"})}))))
 
-(defonce server (atom nil)) 
+(def config
+  {:server/aleph {:port 8000 :handler app}})
+
+(def dev-config
+  (-> config
+      (assoc :server/shadow {:profiles [:physignathus]})))
+
+; Start and stop the web server
+(defmethod ig/init-key :server/aleph [_ {:keys [handler port]}]
+  (aleph/start-server handler {:port port}))
+(defmethod ig/halt-key! :server/aleph [_ server]
+  (.close server))
+
+; Start and Stop the shadow.cljs server
+(defmethod ig/init-key :server/shadow [_ {:keys [profiles]}]
+  (-> `shadow.cljs.devtools.server/start!
+      requiring-resolve
+      (apply []))
+  (-> `shadow.cljs.devtools.api/watch
+      requiring-resolve
+      (apply profiles)))
+(defmethod ig/halt-key! :server/shadow [_ _]
+  (-> `shadow.cljs.devtools.server/stop!
+      requiring-resolve
+      (apply [])))
+
+#_(def system
+   (ig/init config))
+
+(def dev-system
+  (ig/init dev-config))
 
 (defn -main
-  [& _args]
-  (reset! server (aleph/start-server app {:port 8000})))
-
-(defn restart-dev-server
-  []
-  (.close @server)
-  (reset! server (aleph/start-server app {:port 8000})))
-
-(defn dev-main
-  [& _]
-  (-> `shadow.cljs.devtools.server/start!
-    requiring-resolve
-    (apply []))
-  (-> `shadow.cljs.devtools.api/watch
-    requiring-resolve
-    (apply [:physignathus]))
-  (-main))
+  [& _args])
 
 (comment
-  (dev-main)
-  (restart-dev-server)
-  #_(-main))
+  (ig/halt! dev-system))
